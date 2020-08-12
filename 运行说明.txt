@@ -1,0 +1,148 @@
+
+
+**********************   step01    **********************************
+0101 添加依赖
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.6</version>
+        </dependency>
+
+        <!--//org.apache.commons.beanutils.BeanUtils-->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.3</version>
+        </dependency>
+0102
+        import org.apache.commons.beanutils.BeanUtils;     //apache 的 beanUtils
+        Order order = new Order();
+        ... ...
+        OrderQueryParam orderQueryParam = new OrderQueryParam();
+        BeanUtils.copyProperties(orderQueryParam,order);  // (dest,source)
+
+
+**********************   step02    **********************************
+0201  添加依赖
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>5.1.5.RELEASE</version>
+        </dependency>
+0202
+        //import org.springframework.beans.BeanUtils;    //spring的 BeanUtils
+        Order order = new Order();
+        ... ...
+        OrderQueryParam orderQueryParam = new OrderQueryParam();
+        BeanUtils.copyProperties(order,orderQueryParam);  //(source,dest)
+
+
+**********************   step03    **********************************
+0300  添加依赖
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.2.10</version>
+        </dependency>
+        <dependency>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>reflectasm</artifactId>
+            <version>1.11.7</version>
+        </dependency>
+        ------------------- --------------------------------
+030101   BeanCopierTest01
+        final BeanCopier beanCopier = BeanCopier.create(User.class, UserDto.class, false);
+        User user = new User();
+        ... ...
+        UserDto userDto = new UserDto();
+        beanCopier.copy(user,userDto,null);   //User  与  UserDto age  name  都是相同类型 所以可以从User映射到UserDto
+        //打印的时候   userDto中的值都从user中映射过来了
+
+030102  BeanCopierTest02withConvert
+      User  与  UserWithDiffType age   类型不一样 ， 所以可以从User.age 不可以映射到  UserWithDiffType.age
+      ......  同上
+      //  由于   User.age  (int)   UserWithDiffType.age (Integer)  类型不一样
+      // 打印的时候  userDto.age 值为空
+ ------------------- --------------------------------
+0302  CglibBeanCopier02withConvert
+           类型不一样的转换时候需要 使用converter 转换其中的类型
+public class Account {                |   public class AccountDto {
+    private int id;                   |       private int id;
+    private Date createTime;          |       private String createTime;
+    private BigDecimal balance;       |       private String balance;
+}                                     |   }
+
+  运行  BeanCopier2Test  比较
+    copier.copy(po, dto) ;             //直接转换             createTime  balance  都为Null
+    copier.copy(po, dto, converter);   //使用converter转换     AccountConverter 中包含 Date 及 BigDecimal 转string的代码
+
+------------------- --------------------------------
+https://www.cnblogs.com/winner-0715/p/10117282.html
+0303   CglibBeanCopier03withWrapper
+  运行  BeanCopier3Test
+       CglibBeanCopier03withWrapper
+       使用
+        WrapperBeanCopier.copyProperties(account,accountDto);
+       替换
+        BeanCopier copier = BeanCopier.create(Account.class, AccountDto.class, false);
+        AccountDto accountDto = new AccountDto();
+        copier.copy(account, accountDto, null);
+        WrapperBeanCopier 中的缓存机制 对去过的数据 与 第一次取的数据 区分对待
+
+
+**********************   step04    **********************************
+https://www.cnblogs.com/winner-0715/p/10117282.html
+0401   引入配置文件
+       <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>5.1.5.RELEASE</version>
+        </dependency>
+0402    BeanCopie 速度非常快
+
+
+        BeanUtils start time is :1597236554316
+        BeanUtils end time is   :1597236554637
+        BeanUtils took time: 321(ms)
+        ====================================================
+        BeanCopie start time is :1597236554667
+        BeanCopie rend time is  :1597236554667
+        BeanCopier took time: 0(ms)
+
+**********************   step05    **********************************
+//https://www.bbsmax.com/A/8Bz8PVq6zx/
+0501  引入配置文件
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-jdk8</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.6</version>
+        </dependency>
+
+0502  运行  MapStructTest
+
+**********************   step06    **********************************
+
+**********************   step07    **********************************
+
+**********************   step08    **********************************
+
+**********************   step09    **********************************
+
+**********************   step10    **********************************

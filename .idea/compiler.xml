@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="05MapStructs" />
+        <module name="_01ApacheBeanUtils" />
+        <module name="_02SpringBeanUtils" />
+        <module name="mappingTools" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="01ApacheBeanUtils" target="1.5" />
+      <module name="04CglibBeanCopierVSSpringBeanUtils" target="1.5" />
+      <module name="05MapStructs" target="1.5" />
+      <module name="_01ApacheBeanUtils" target="1.5" />
+      <module name="_02SpringBeanUtils" target="1.5" />
+      <module name="_03CglibBeanCopier" target="1.5" />
+      <module name="_05MapStructs" target="1.5" />
+      <module name="mappingTools" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
