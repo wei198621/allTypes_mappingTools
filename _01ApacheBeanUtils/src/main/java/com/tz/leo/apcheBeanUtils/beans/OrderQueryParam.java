@@ -14,6 +14,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class OrderQueryParam {
     /**
+     * id  String 类型   Order.id  Long 类型
+     */
+    private String id;
+    /**
      * 订单编号
      */
     private String orderSn;

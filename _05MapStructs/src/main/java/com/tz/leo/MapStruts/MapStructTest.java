@@ -11,7 +11,6 @@ import org.mapstruct.factory.Mappers;
  * Content:
  */
 public class MapStructTest {
-
     public static void main(String[] args) {
         Order order = new Order();
         order.setId(12345L);
@@ -20,9 +19,6 @@ public class MapStructTest {
         order.setReceiverKeyword("keyword");
         order.setSourceType(1);
         order.setStatus(2);
-
-      //  System.out.println("sss");
-
         OrderMapper mapper = Mappers.getMapper(OrderMapper.class);
         OrderQueryParam orderQueryParam = mapper.entity2queryParam(order);
         System.out.println(orderQueryParam.getOrderSn());

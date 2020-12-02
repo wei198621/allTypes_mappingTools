@@ -11,11 +11,8 @@ import net.sf.cglib.beans.BeanCopier;
  */
 public class BeanCopierTest01 {
     public static void main(String[] args) {
-
         CopyUser2UserDto();
-
     }
-
 
     /**
     *@Description:  User.age  (int)   UserDto.age (int)

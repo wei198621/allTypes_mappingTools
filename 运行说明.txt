@@ -118,7 +118,7 @@ https://www.cnblogs.com/winner-0715/p/10117282.html
         BeanCopier took time: 0(ms)
 
 **********************   step05    **********************************
-//https://www.bbsmax.com/A/8Bz8PVq6zx/
+https://www.bbsmax.com/A/8Bz8PVq6zx/
 0501  引入配置文件
         <dependency>
             <groupId>org.mapstruct</groupId>

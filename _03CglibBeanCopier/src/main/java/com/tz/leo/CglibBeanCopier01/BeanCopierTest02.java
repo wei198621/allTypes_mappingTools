@@ -12,11 +12,7 @@ import net.sf.cglib.beans.BeanCopier;
  */
 public class BeanCopierTest02 {
     public static void main(String[] args) {
-
-
         CopyUser2UserWithDiffType();
-
-
     }
 
 

@@ -23,7 +23,6 @@ public class appTest {
             po.setName("lili"+ (new Random()).toString());
             list1.add(po);
         }
-        BeanCopier copier = BeanCopier.create(User.class, UserDto.class, false);
 
         //*************************** BeanUtils  9900000 用时测试  ************************************
         long startBeanUtils = System.currentTimeMillis();
@@ -41,12 +40,14 @@ public class appTest {
 
         //************************** BeanCopier  9900000 用时测试 *************************************
         System.out.println("====================================================");
+        BeanCopier copier = BeanCopier.create(User.class, UserDto.class, false);
         long startBeanCopier = System.currentTimeMillis();
+        List<UserDto> list3 = new ArrayList<UserDto>(9900000);
         System.out.println("BeanCopie start time is :" +startBeanCopier);
         for (User user : list1) {
             UserDto dto = new UserDto();
             copier.copy(user, dto, null);      //20 ms
-            list2.add(dto);
+            list3.add(dto);
         }
         long endBeanCopier =System.currentTimeMillis();
         System.out.println("BeanCopie rend time is  :" + endBeanCopier );
