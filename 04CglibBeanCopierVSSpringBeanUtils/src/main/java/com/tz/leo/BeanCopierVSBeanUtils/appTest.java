@@ -17,14 +17,14 @@ import java.util.Random;
 public class appTest {
     public static void main(String[] args) {
         List<User> list1 = new ArrayList<User>(9900000);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10000; i++) {
             User po = new User();
             po.setAge(1);
             po.setName("lili"+ (new Random()).toString());
             list1.add(po);
         }
 
-        //*************************** BeanUtils  9900000 用时测试  ************************************
+        //*************************** BeanUtils 200ms 用时测试  ************************************
         long startBeanUtils = System.currentTimeMillis();
         System.out.println("BeanUtils start time is :" +startBeanUtils);
         List<UserDto> list2 = new ArrayList<UserDto>(9900000);
@@ -38,7 +38,7 @@ public class appTest {
         System.out.println("BeanUtils end time is   :" + endBeanUtils );
         System.out.printf("BeanUtils took time: %d(ms)%n", endBeanUtils - startBeanUtils);
 
-        //************************** BeanCopier  9900000 用时测试 *************************************
+        //************************** BeanCopier  90ms 用时测试 *************************************
         System.out.println("====================================================");
         BeanCopier copier = BeanCopier.create(User.class, UserDto.class, false);
         long startBeanCopier = System.currentTimeMillis();
